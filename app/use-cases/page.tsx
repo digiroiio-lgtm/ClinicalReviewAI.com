@@ -186,6 +186,9 @@ export default function UseCasesPage() {
           <li><strong>Which risks have owners?</strong> Frameworks such as the NIST AI Risk Management Framework describe governance and risk-management practices.<Cite id="nist-ai-rmf" refs={REFS} /></li>
         </ul>
         <p>
+          Buyers comparing tools for these workflows can start with <Link href="/ai-clinical-review-software">AI clinical review software</Link> and <Link href="/medical-necessity-review-software">medical necessity review software</Link>.
+        </p>
+        <p>
           For a full discussion of risks, see <Link href="/ai-clinical-review#risks">risks of AI clinical review</Link>.
         </p>
       </ArticleSection>

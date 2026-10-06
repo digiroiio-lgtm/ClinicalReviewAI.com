@@ -129,6 +129,9 @@ export default function PriorAuthorizationReviewPage() {
             ["Workflow prioritization", "Order cases by urgency and deadlines under defined rules.", "Prioritized work queue."],
           ]}
         />
+        <p>
+          Which of these steps can be automated with rules or AI, and which should not be, is covered in <Link href="/clinical-review-automation">clinical review automation</Link>.
+        </p>
       </ArticleSection>
 
       <section id="where-human-review-remains" className="section" aria-labelledby="human-heading" style={{ background: "var(--teal-soft)", borderTop: "1px solid #a8d5cf", borderBottom: "1px solid #a8d5cf" }}>

@@ -129,6 +129,9 @@ export default function MedicalNecessityReviewPage() {
             ["Reviewer prioritization", "Orders or routes cases by workflow rules.", "Reviews every case that requires clinical judgment."],
           ]}
         />
+        <p>
+          Organizations that support this workflow with technology can review typical capabilities and buying questions in <Link href="/medical-necessity-review-software">medical necessity review software</Link>.
+        </p>
       </ArticleSection>
 
       <section id="human-clinical-judgment" className="section" aria-labelledby="human-heading" style={{ background: "var(--teal-soft)", borderTop: "1px solid #a8d5cf", borderBottom: "1px solid #a8d5cf" }}>

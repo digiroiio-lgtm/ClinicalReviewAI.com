@@ -189,6 +189,9 @@ export default function HomePage() {
         <p>
           <Link className="more-link" href="/use-cases">Explore all AI clinical review use cases →</Link>
         </p>
+        <p>
+          Teams comparing tools can read about <Link href="/ai-clinical-review-software">AI clinical review software</Link>, what can and cannot be handled through <Link href="/clinical-review-automation">clinical review automation</Link>, and <Link href="/medical-necessity-review-software">medical necessity review software</Link>.
+        </p>
       </ArticleSection>
 
       <section className="section section-alt" id="human-oversight" aria-labelledby="oversight-heading">

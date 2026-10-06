@@ -204,6 +204,9 @@ export default function WhatIsClinicalReviewPage() {
         <p>
           <Link className="more-link" href="/ai-clinical-review">Read the guide to AI clinical review →</Link>
         </p>
+        <p>
+          Organizations that evaluate tools for these tasks can find a category overview in <Link href="/ai-clinical-review-software">AI clinical review software</Link>.
+        </p>
         <DisclaimerBox tone="oversight" />
       </ArticleSection>
 

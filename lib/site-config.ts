@@ -45,6 +45,10 @@ export const indexablePages = [
   { path: "/medical-necessity-review", priority: 0.9 },
   { path: "/prior-authorization-review", priority: 0.9 },
   { path: "/use-cases", priority: 0.8 },
+  // Phase 2: commercial-investigation category resources
+  { path: "/ai-clinical-review-software", priority: 0.8 },
+  { path: "/clinical-review-automation", priority: 0.8 },
+  { path: "/medical-necessity-review-software", priority: 0.8 },
 ] as const;
 
 export function absoluteUrl(path: string): string {

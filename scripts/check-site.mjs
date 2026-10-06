@@ -5,10 +5,10 @@ import { spawn } from "node:child_process";
 const PORT = process.env.CHECK_PORT || "3111";
 const BASE = `http://localhost:${PORT}`;
 const ORIGIN = "https://clinicalreviewai.com";
-const INDEXABLE = ["/", "/what-is-clinical-review", "/ai-clinical-review", "/medical-necessity-review", "/prior-authorization-review", "/use-cases"];
+const INDEXABLE = ["/", "/what-is-clinical-review", "/ai-clinical-review", "/medical-necessity-review", "/prior-authorization-review", "/use-cases", "/ai-clinical-review-software", "/clinical-review-automation", "/medical-necessity-review-software"];
 const ALL = [...INDEXABLE, "/domain"];
 const DISCLAIMER = "ClinicalReviewAI.com provides general educational information about clinical review and AI-assisted healthcare workflows. It does not provide medical, legal, insurance or regulatory advice and is not a substitute for qualified professional judgment.";
-const FORBIDDEN_LD = ["Physician", "MedicalOrganization", "Hospital", "MedicalClinic", "Review", "AggregateRating", "Person"];
+const FORBIDDEN_LD = ["Physician", "MedicalOrganization", "Hospital", "MedicalClinic", "Review", "AggregateRating", "Person", "Product", "SoftwareApplication", "Offer", "Service"];
 
 const failures = [];
 const fail = (msg) => failures.push(msg);
@@ -126,6 +126,13 @@ try {
   // Every pillar linked from the homepage
   for (const p of INDEXABLE.slice(1)) ok(pages["/"].includes(`href="${p}"`), `/: no internal link to ${p}`);
 
+  // No orphans: every indexable page (other than home) is linked from several other pages' main content
+  for (const p of INDEXABLE.slice(1)) {
+    const linkers = Object.entries(pages).filter(([q, h]) => q !== p && new RegExp(`<main[\\s\\S]*href="${p}(#[^"]*)?"[\\s\\S]*</main>`).test(h)).map(([q]) => q);
+    ok(linkers.length >= 3, `${p}: only linked from ${linkers.length} other page(s): ${linkers.join(", ")}`);
+  }
+  // Every new commercial page links back to the core definition, methodology and use-case pages
+  for (const p of INDEXABLE.slice(6)) for (const t of ["/what-is-clinical-review", "/ai-clinical-review", "/use-cases"]) ok(new RegExp(`<main[\\s\\S]*href="${t}(#[^"]*)?"`).test(pages[p]), `${p}: missing link to ${t}`);
   // Sitemap
   const sm = await get("/sitemap.xml");
   const locs = [...sm.text.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
@@ -151,6 +158,7 @@ try {
   const bad = [
     [/\bHIPAA[- ]compliant\b/i, "HIPAA compliance claim"], [/\bFDA[- ](approved|cleared|authorized|registered)\b/i, "FDA status claim"],
     [/\b\d+(\.\d+)?\s?%/, "percentage statistic"], [/\b(testimonial|free trial|pricing|sign in|log ?in)\b/i, "SaaS-style element"],
+    [/\b(our (software|platform|product|solution|tool)s?|book a demo|request a demo|start free|get started|contact sales|sign up)\b/i, "product/service copy"],
     [/\bDr\.\s|\bM\.D\.|\bMD,/, "physician credential"], [/\b(proprietary|patent(ed|-pending))\b/i, "proprietary claim"],
   ];
   for (const [p, html] of Object.entries(pages)) {

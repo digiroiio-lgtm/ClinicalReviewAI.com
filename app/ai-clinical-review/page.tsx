@@ -109,6 +109,9 @@ export default function AiClinicalReviewPage() {
           ]}
           caption="Software prepares and organizes. The highlighted steps belong to qualified professionals."
         />
+        <p>
+          Buyers assessing products that implement this workflow can use the <Link href="/ai-clinical-review-software">software evaluation criteria</Link>; the steps that suit rules-based or AI automation are mapped in <Link href="/clinical-review-automation">clinical review automation</Link>.
+        </p>
         <h3>Inputs and outputs</h3>
         <ComparisonTable
           caption="Inputs and outputs of each AI-assisted stage"
